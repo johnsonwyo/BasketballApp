@@ -1,0 +1,18 @@
+spring:
+    application:
+     name: team-service 
+    profiles:
+      active: prod-team
+    cloud:
+        config: 
+            uri: http://configserverteam:8072
+
+#Enable all Spring Boot Actuator endpoints.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"    
+
+server:
+  port: 8081
