@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>3.1.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -24,7 +24,10 @@
 	  </properties>
 
   <modules>
-    <module>configserverteam</module>
+    <module>configserver</module>
+    <module>personservice</module>
+    <module>playermetricservice</module>
+    <module>practiceservice</module>
     <module>teamservice</module>
   </modules>
   <build>

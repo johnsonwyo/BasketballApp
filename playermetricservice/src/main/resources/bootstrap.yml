@@ -1,8 +1,8 @@
 spring:
     application:
-     name: team-service 
+     name: player-metric-service 
     profiles:
-      active: prod-team
+      active: prod
     cloud:
         config: 
             uri: http://configserver:8071
@@ -13,6 +13,3 @@ management:
     web:
       exposure:
         include: "*"    
-
-server:
-  port: 8081

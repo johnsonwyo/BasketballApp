@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.basketballapp</groupId>
-	<artifactId>teamservice</artifactId>
+	<artifactId>personservice</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
-	<name>Team Service</name>
-	<description>SAOP Team Service</description>
+	<name>Person Service</name>
+	<description>SAOP Person Service</description>
 
 	<properties>
 		<java.version>21</java.version>

@@ -1,4 +1,5 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "GitHooks.hooksDirectory": "c:\\Users\\johns\\OneDrive\\Documents\\MCS\\DS\\BasketballApp\\TeamService\\.git\\hooks"
 }
