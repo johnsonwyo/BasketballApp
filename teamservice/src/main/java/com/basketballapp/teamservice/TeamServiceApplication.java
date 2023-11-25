@@ -1,34 +1,39 @@
 package com.basketballapp.teamservice;
 
-import java.util.Locale;
+import java.util.Collections;
+import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.client.RestTemplate;
+
+import com.basketballapp.teamservice.utils.UserContextInterceptor;
 
 @SpringBootApplication
+@EnableFeignClients
 public class TeamServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TeamServiceApplication.class, args);
 	}
 
+	@SuppressWarnings("unchecked")
+	@LoadBalanced
 	@Bean
-	public LocaleResolver localeResolver2() {
-		SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-		localeResolver.setDefaultLocale(Locale.US);
-		return localeResolver;
-	}
+	public RestTemplate getRestTemplate() {
+		RestTemplate template = new RestTemplate();
+		List interceptors = template.getInterceptors();
+		if (interceptors == null) {
+			template.setInterceptors(Collections.singletonList(new UserContextInterceptor()));
+		} else {
+			interceptors.add(new UserContextInterceptor());
+			template.setInterceptors(interceptors);
+		}
 
-	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setUseCodeAsDefaultMessage(true);
-		messageSource.setBasenames("messages");
-		return messageSource;
+		return template;
 	}
 
 }

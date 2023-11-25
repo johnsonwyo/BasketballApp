@@ -1,5 +1,7 @@
 package com.basketballapp.playermetricservice.controller;
 
+import java.util.concurrent.TimeoutException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,11 +23,29 @@ public class PlayerController {
 	@Autowired
 	private PlayerService playerService;
 
-	@RequestMapping(value = "/{firstName}/{lastName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{firstName}/{lastName}/1", method = RequestMethod.GET)
 	public ResponseEntity<Player> getplayer(@PathVariable("firstName") String firstName,
 			@PathVariable("lastName") String lastName) {
 
 		Player player = playerService.getPlayer(firstName, lastName);
+
+		return ResponseEntity.ok(player);
+	}
+
+	@RequestMapping(value = "/{firstName}/{lastName}/2", method = RequestMethod.GET)
+	public ResponseEntity<Player> getplayerDelay(@PathVariable("firstName") String firstName,
+			@PathVariable("lastName") String lastName) throws TimeoutException {
+
+		Player player = playerService.getPlayerDelay(firstName, lastName);
+
+		return ResponseEntity.ok(player);
+	}
+
+	@RequestMapping(value = "/{firstName}/{lastName}/3", method = RequestMethod.GET)
+	public ResponseEntity<Player> getplayerDelayFallback(@PathVariable("firstName") String firstName,
+			@PathVariable("lastName") String lastName) throws TimeoutException {
+
+		Player player = playerService.getPlayerDelayFallback(firstName, lastName);
 
 		return ResponseEntity.ok(player);
 	}

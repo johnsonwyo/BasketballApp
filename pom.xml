@@ -25,6 +25,8 @@
 
   <modules>
     <module>configserver</module>
+    <module>eurekaserver</module>
+    <module>gatewayserver</module>
     <module>personservice</module>
     <module>playermetricservice</module>
     <module>practiceservice</module>

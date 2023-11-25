@@ -1,0 +1,21 @@
+server:
+  port: 8072
+ 
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: euerkaserver
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8761/eureka/
+      
+spring:
+  cloud:
+    loadbalancer.ribbon.enabled: false
+    gateway:
+        discovery:
+          locator:
+            enabled: true
+            lowerCaseServiceId: true

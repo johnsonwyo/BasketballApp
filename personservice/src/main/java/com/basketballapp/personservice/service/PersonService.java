@@ -8,6 +8,8 @@ import com.basketballapp.personservice.config.ServiceConfig;
 import com.basketballapp.personservice.model.Person;
 import com.basketballapp.personservice.repository.PersonRepository;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+
 @Service
 public class PersonService {
 
@@ -20,6 +22,7 @@ public class PersonService {
 	@Autowired
 	ServiceConfig config;
 
+	@Bulkhead(name = "bulkheadService")
 	public Person getPerson(String firstName, String lastName) {
 		Person person = personRepository.findByName(firstName, lastName);
 		if (null == person) {
